@@ -8,9 +8,10 @@ env:
 on:
   workflow_dispatch:
     inputs:
-      description: 'Function App Name'
-      default: 'cisco-func-app'
-    branches: [ master ]
+      functionAppName:
+        description: 'Function App Name'
+        default: 'cisco-func-app'
+        required: true
 
 defaults:
   run:
