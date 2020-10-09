@@ -6,8 +6,6 @@ env:
   DOTNET_VERSION: '2.1.810' # set this to the dotnet version to use
 
 on:
-  push:
-    branches: [ master ]
   workflow_dispatch:
     inputs:
       description: 'Function App Name'
