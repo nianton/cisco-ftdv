@@ -1,4 +1,9 @@
-name: Build .NET Core Function App
+name: "Build .NET Core Function App"
+
+env:
+  AZURE_FUNCTIONAPP_NAME: myfunc-app # set this to your application's name
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: "autoscale/azure/NGFWv6.6.0/Code/FTDAutoScaleManager/" # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: '2.2.402' # set this to the dotnet version to use
 
 on:
   push:
@@ -6,10 +11,9 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  AZURE_FUNCTIONAPP_NAME: myfunc-app  # set this to your application's name
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: "autoscale/azure/NGFWv6.6.0/Code/FTDAutoScaleManager/"    # set this to the path to your web app project, defaults to the repository root
-  DOTNET_VERSION: '2.2.402'              # set this to the dotnet version to use
+defaults:
+  run:
+    shell: pwsh
 
 jobs:
   build:
@@ -23,8 +27,14 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore
+      run: |
+        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'        
+        dotnet restore
+        popd
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: |
+        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'        
+        dotnet build --configuration Release --no-restore
+        popd
     - name: Test
       run: dotnet test --no-restore --verbosity normal
