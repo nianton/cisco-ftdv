@@ -8,7 +8,10 @@ env:
 on:
   push:
     branches: [ master ]
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      description: 'Function App Name'
+      default: 'cisco-func-app'
     branches: [ master ]
 
 defaults:
