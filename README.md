@@ -32,3 +32,7 @@ Azure Resource Manager templates are JSON files that contain resource descriptio
 
 
 * Azure NGFWv Deployment Template: [README](deployment-templates/azure/README.md) | [NFWv/FTDv](deployment-templates/azure/NGFWv6.6.0/ftdv/README.md)  |   [FMCv](deployment-templates/azure/NGFWv6.6.0/fmcv/README.md)
+
+## Azure Deployment Additions
+
+Build badge: ![Build .NET Core Function App](https://github.com/nianton/cisco-ftdv/workflows/Build%20.NET%20Core%20Function%20App/badge.svg?event=workflow_dispatch)
